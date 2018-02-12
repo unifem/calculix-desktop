@@ -13,7 +13,7 @@ import sys
 import subprocess
 import time
 
-APP = "calcluix"
+APP = "calculix"
 
 
 def parse_args(description):
