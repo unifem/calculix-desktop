@@ -8,14 +8,18 @@ LABEL maintainer "Xiangmin Jiao <xmjiao@gmail.com>"
 
 USER root
 WORKDIR /tmp
+ADD image/usr /usr
 
 # Install system packages
-RUN apt-get update && \
+RUN sh -c "curl -s http://dl.openfoam.org/gpg.key | apt-key add -" && \
+    add-apt-repository http://dl.openfoam.org/ubuntu && \
+    apt-get update && \
     apt-get install -y --no-install-recommends \
         build-essential \
         gcc \
         gfortran \
-        git && \
+        git \
+        paraviewopenfoam56 && \
     apt-get clean && \
     apt-get autoremove && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
